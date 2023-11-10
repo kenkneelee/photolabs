@@ -6,14 +6,23 @@ const PhotoListItem = (props) => {
   /* Insert React */
   const { data } = props;
   return (
-    <div>
-      <img src={data.imageSource}></img>
-      <img src={data.profile}></img>
-      <p>{data.username}</p>
-      <p>
-        {data.location.city}, {data.location.country}
-      </p>
-    </div>
+    <article className="photo-list__item">
+      <img src={data.imageSource} alt="image" className="photo-list__image" />
+
+      <div className="photo-list__user-details">
+        <img
+          src={data.profile}
+          alt="poster's profile photo"
+          className="photo-list__user-profile"
+        />
+        <div className="photo-list__user-info">
+          <div className="photo-list__user-username">{data.username}</div>
+          <div className="photo-list__user-location">
+            {data.location.city}, {data.location.country}
+          </div>
+        </div>
+      </div>
+    </article>
   );
 };
 
