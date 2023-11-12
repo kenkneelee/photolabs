@@ -13,6 +13,7 @@ const PhotoList = (props) => {
         setFavoritedPhotos={props.setFavoritedPhotos}
         modalVisibility = {props.modalVisibility}
         setModalVisibility = {props.setModalVisibility}
+        setActivePhoto = {props.setActivePhoto}
       />
     );
   });
