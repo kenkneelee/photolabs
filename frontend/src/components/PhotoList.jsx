@@ -11,6 +11,8 @@ const PhotoList = (props) => {
         key={photo.id}
         favoritedPhotos={props.favoritedPhotos}
         setFavoritedPhotos={props.setFavoritedPhotos}
+        modalVisibility = {props.modalVisibility}
+        setModalVisibility = {props.setModalVisibility}
       />
     );
   });
