@@ -5,7 +5,7 @@ import PhotoList from "components/PhotoList";
 import "styles/HomeRoute.scss";
 
 const HomeRoute = (props) => {
-  const { topics, photos } = props;
+  const { topics, photos, modalVisibility, setModalVisibility } = props;
   const [favoritedPhotos, setFavoritedPhotos] = useState([]);
 
   // log updated favorites list on state change
@@ -15,11 +15,16 @@ const HomeRoute = (props) => {
 
   return (
     <div className="home-route">
-      <TopNavigation topics={topics} isFavPhotoExist = {favoritedPhotos.length > 0} />
+      <TopNavigation
+        topics={topics}
+        isFavPhotoExist={favoritedPhotos.length > 0}
+      />
       <PhotoList
         photos={photos}
         favoritedPhotos={favoritedPhotos}
         setFavoritedPhotos={setFavoritedPhotos}
+        modalVisibility={modalVisibility}
+        setModalVisibility={setModalVisibility}
       />
     </div>
   );
