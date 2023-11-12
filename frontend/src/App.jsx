@@ -12,7 +12,7 @@ const App = () => {
   return (
     <div className="App">
       <HomeRoute topics={topics} photos={photos} modalVisibility={modalVisibility} setModalVisibility={setModalVisibility}/>
-      {modalVisibility && <PhotoDetailsModal />}
+      {modalVisibility && <PhotoDetailsModal setModalVisibility={setModalVisibility}/>}
     </div>
   );
 };
