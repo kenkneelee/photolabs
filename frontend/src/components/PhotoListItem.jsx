@@ -11,8 +11,9 @@ const PhotoListItem = (props) => {
     setFavoritedPhotos,
     modalVisibility,
     setModalVisibility,
+    setActivePhoto
   } = props;
-  
+
   const addToFavorites = () => {
     !favoritedPhotos.some((photo) => photo.id === data.id)
       ? setFavoritedPhotos([...favoritedPhotos, data])
@@ -23,6 +24,7 @@ const PhotoListItem = (props) => {
 
   const openModal = () => {
     setModalVisibility(!modalVisibility);
+    setActivePhoto(data)
   };
 
   return (
