@@ -5,7 +5,14 @@ import "../styles/PhotoList.scss";
 
 const PhotoList = (props) => {
   const photos = props.photos.map((photo) => {
-    return <PhotoListItem data={photo} key={photo.id} />;
+    return (
+      <PhotoListItem
+        data={photo}
+        key={photo.id}
+        favoritedPhotos={props.favoritedPhotos}
+        setFavoritedPhotos={props.setFavoritedPhotos}
+      />
+    );
   });
 
   return <ul className="photo-list">{photos}</ul>;
