@@ -5,7 +5,14 @@ import PhotoFavButton from "./PhotoFavButton";
 
 const PhotoListItem = (props) => {
   /* Insert React */
-  const { data, favoritedPhotos, setFavoritedPhotos } = props;
+  const {
+    data,
+    favoritedPhotos,
+    setFavoritedPhotos,
+    modalVisibility,
+    setModalVisibility,
+  } = props;
+  
   const addToFavorites = () => {
     !favoritedPhotos.some((photo) => photo.id === data.id)
       ? setFavoritedPhotos([...favoritedPhotos, data])
@@ -14,10 +21,19 @@ const PhotoListItem = (props) => {
         );
   };
 
+  const openModal = () => {
+    setModalVisibility(!modalVisibility);
+  };
+
   return (
     <article className="photo-list__item">
       <PhotoFavButton addToFavorites={addToFavorites} />
-      <img src={data.urls.regular} alt="image" className="photo-list__image" />
+      <img
+        src={data.urls.regular}
+        alt="image"
+        className="photo-list__image"
+        onClick={openModal}
+      />
 
       <div className="photo-list__user-details">
         <img
