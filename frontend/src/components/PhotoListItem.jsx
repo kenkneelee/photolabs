@@ -5,10 +5,18 @@ import PhotoFavButton from "./PhotoFavButton";
 
 const PhotoListItem = (props) => {
   /* Insert React */
-  const { data } = props;
+  const { data, favoritedPhotos, setFavoritedPhotos } = props;
+  const addToFavorites = () => {
+    !favoritedPhotos.some((photo) => photo.id === data.id)
+      ? setFavoritedPhotos([...favoritedPhotos, data])
+      : setFavoritedPhotos(
+          favoritedPhotos.filter((photo) => photo.id !== data.id)
+        );
+  };
+
   return (
     <article className="photo-list__item">
-      <PhotoFavButton />
+      <PhotoFavButton addToFavorites={addToFavorites} />
       <img src={data.urls.regular} alt="image" className="photo-list__image" />
 
       <div className="photo-list__user-details">
