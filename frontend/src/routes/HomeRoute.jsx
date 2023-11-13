@@ -5,8 +5,15 @@ import PhotoList from "components/PhotoList";
 import "styles/HomeRoute.scss";
 
 const HomeRoute = (props) => {
-  const { topics, photos, modalVisibility, setModalVisibility, setActivePhoto } = props;
-  const [favoritedPhotos, setFavoritedPhotos] = useState([]);
+  const {
+    topics,
+    photos,
+    setModalVisibility,
+    setActivePhoto,
+    favoritedPhotos,
+    setFavoritedPhotos,
+  } = props;
+  // const [favoritedPhotos, setFavoritedPhotos] = useState([]);
 
   // log updated favorites list on state change
   useEffect(() => {
@@ -23,9 +30,8 @@ const HomeRoute = (props) => {
         photos={photos}
         favoritedPhotos={favoritedPhotos}
         setFavoritedPhotos={setFavoritedPhotos}
-        modalVisibility={modalVisibility}
         setModalVisibility={setModalVisibility}
-        setActivePhoto = {setActivePhoto}
+        setActivePhoto={setActivePhoto}
       />
     </div>
   );
