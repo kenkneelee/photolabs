@@ -4,19 +4,19 @@ import FavIcon from "./FavIcon";
 import "../styles/PhotoFavButton.scss";
 
 function PhotoFavButton(props) {
-  const { photo, favoritedPhotos, addToFavorites } = props;
+  const { photo, favoritedPhotos, updateToFavPhotoIds } = props;
 
   const [favorited, setFavorited] = useState(
-    favoritedPhotos.some((favPhoto) => favPhoto.id === photo.id)
+    favoritedPhotos.some((favPhoto) => favPhoto === photo.id)
   );
 
   useEffect(() => {
     // Update 'favorited' state when 'favoritedPhotos' change
-    setFavorited(favoritedPhotos.some((favPhoto) => favPhoto.id === photo.id));
+    setFavorited(favoritedPhotos.some((favPhoto) => favPhoto === photo.id));
   }, [favoritedPhotos, photo]);
 
   const handleClick = () => {
-    addToFavorites();
+    updateToFavPhotoIds(photo.id)
   };
 
   return (

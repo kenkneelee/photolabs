@@ -8,12 +8,10 @@ const HomeRoute = (props) => {
   const {
     topics,
     photos,
-    setModalVisibility,
-    setActivePhoto,
+    onPhotoSelect,
+    updateToFavPhotoIds,
     favoritedPhotos,
-    setFavoritedPhotos,
   } = props;
-  // const [favoritedPhotos, setFavoritedPhotos] = useState([]);
 
   // log updated favorites list on state change
   useEffect(() => {
@@ -29,9 +27,8 @@ const HomeRoute = (props) => {
       <PhotoList
         photos={photos}
         favoritedPhotos={favoritedPhotos}
-        setFavoritedPhotos={setFavoritedPhotos}
-        setModalVisibility={setModalVisibility}
-        setActivePhoto={setActivePhoto}
+        updateToFavPhotoIds={updateToFavPhotoIds}
+        onPhotoSelect={onPhotoSelect}
       />
     </div>
   );

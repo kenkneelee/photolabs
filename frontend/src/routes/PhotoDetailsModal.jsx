@@ -11,13 +11,14 @@ const PhotoDetailsModal = (props) => {
   const {
     photos,
     favoritedPhotos,
-    setFavoritedPhotos,
-    setModalVisibility,
     activePhoto,
-    setActivePhoto,
+    onPhotoSelect,
+    onClosePhotoDetailsModal,
+    updateToFavPhotoIds,
   } = props;
+  
   const handleCloseModal = () => {
-    setModalVisibility(false);
+    onClosePhotoDetailsModal();
   };
 
   // Convert the similar_photos object to an array of similar photos
@@ -31,15 +32,6 @@ const PhotoDetailsModal = (props) => {
     similarPhotoIds.includes(photo.id)
   );
 
-  // should refactor
-  const addToFavorites = () => {
-    !favoritedPhotos.some((photo) => photo.id === activePhoto.id)
-      ? setFavoritedPhotos([...favoritedPhotos, activePhoto])
-      : setFavoritedPhotos(
-          favoritedPhotos.filter((photo) => photo.id !== activePhoto.id)
-        );
-  };
-
   return (
     <div className="photo-details-modal">
       {/* close button */}
@@ -49,7 +41,7 @@ const PhotoDetailsModal = (props) => {
       {/* the photo */}
       <div className="photo-details-modal__images">
         <PhotoFavButton
-          addToFavorites={addToFavorites}
+          updateToFavPhotoIds={updateToFavPhotoIds}
           photo={activePhoto}
           favoritedPhotos={favoritedPhotos}
         />
@@ -84,9 +76,8 @@ const PhotoDetailsModal = (props) => {
         <PhotoList
           photos={similarPhotos}
           favoritedPhotos={favoritedPhotos}
-          setFavoritedPhotos={setFavoritedPhotos}
-          setModalVisibility={setModalVisibility}
-          setActivePhoto={setActivePhoto}
+          updateToFavPhotoIds={updateToFavPhotoIds}
+          onPhotoSelect={onPhotoSelect}
         />
       )}
     </div>

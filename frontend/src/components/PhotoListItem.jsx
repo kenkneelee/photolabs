@@ -9,29 +9,18 @@ const PhotoListItem = (props) => {
     photos,
     data,
     favoritedPhotos,
-    setFavoritedPhotos,
-    setModalVisibility,
-    setActivePhoto,
+    updateToFavPhotoIds,
+    onPhotoSelect,
   } = props;
 
-  const addToFavorites = () => {
-    !favoritedPhotos.some((photo) => photo.id === data.id)
-      ? setFavoritedPhotos([...favoritedPhotos, data])
-      : setFavoritedPhotos(
-          favoritedPhotos.filter((photo) => photo.id !== data.id)
-        );
-  };
-
   const openModal = () => {
-    setModalVisibility(true);
-    const completePhoto = photos.find((photo) => photo.id === data.id);
-    setActivePhoto(completePhoto);
+    onPhotoSelect(data);
   };
 
   return (
     <article className="photo-list__item">
       <PhotoFavButton
-        addToFavorites={addToFavorites}
+        updateToFavPhotoIds={updateToFavPhotoIds}
         photo={data}
         favoritedPhotos={favoritedPhotos}
       />

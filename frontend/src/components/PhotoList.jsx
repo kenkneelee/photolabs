@@ -11,9 +11,8 @@ const PhotoList = (props) => {
         data={photo}
         key={photo.id}
         favoritedPhotos={props.favoritedPhotos}
-        setFavoritedPhotos={props.setFavoritedPhotos}
-        setModalVisibility={props.setModalVisibility}
-        setActivePhoto={props.setActivePhoto}
+        updateToFavPhotoIds={props.updateToFavPhotoIds}
+        onPhotoSelect={props.onPhotoSelect}
       />
     );
   });
