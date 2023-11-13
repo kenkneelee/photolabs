@@ -7,13 +7,13 @@ const PhotoList = (props) => {
   const photos = props.photos.map((photo) => {
     return (
       <PhotoListItem
+        photos={props.photos}
         data={photo}
         key={photo.id}
         favoritedPhotos={props.favoritedPhotos}
         setFavoritedPhotos={props.setFavoritedPhotos}
-        modalVisibility = {props.modalVisibility}
-        setModalVisibility = {props.setModalVisibility}
-        setActivePhoto = {props.setActivePhoto}
+        setModalVisibility={props.setModalVisibility}
+        setActivePhoto={props.setActivePhoto}
       />
     );
   });
