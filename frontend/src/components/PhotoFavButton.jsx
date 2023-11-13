@@ -1,13 +1,22 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 import FavIcon from "./FavIcon";
 import "../styles/PhotoFavButton.scss";
 
 function PhotoFavButton(props) {
-  const [favorited, setFavorited] = useState(false);
+  const { photo, favoritedPhotos, addToFavorites } = props;
+
+  const [favorited, setFavorited] = useState(
+    favoritedPhotos.some((favPhoto) => favPhoto.id === photo.id)
+  );
+
+  useEffect(() => {
+    // Update 'favorited' state when 'favoritedPhotos' change
+    setFavorited(favoritedPhotos.some((favPhoto) => favPhoto.id === photo.id));
+  }, [favoritedPhotos, photo]);
+
   const handleClick = () => {
-    setFavorited(!favorited);
-    props.addToFavorites();
+    addToFavorites();
   };
 
   return (
