@@ -2,34 +2,36 @@ import React, { useState } from "react";
 
 import "./App.scss";
 import HomeRoute from "routes/HomeRoute";
-import topics from "mocks/topics";
-import photos from "mocks/photos";
 import PhotoDetailsModal from "routes/PhotoDetailsModal";
+import useApplicationData from "hooks/useApplicationData";
 
 // Note: Rendering a single component to build components in isolation
 const App = () => {
-  const [modalVisibility, setModalVisibility] = useState(false);
-  const [activePhoto, setActivePhoto] = useState(null);
-  const [favoritedPhotos, setFavoritedPhotos] = useState([]);
+  const {
+    state,
+    onPhotoSelect,
+    updateToFavPhotoIds,
+    onLoadTopic,
+    onClosePhotoDetailsModal,
+  } = useApplicationData();
 
   return (
     <div className="App">
       <HomeRoute
-        topics={topics}
-        photos={photos}
-        setModalVisibility={setModalVisibility}
-        setActivePhoto={setActivePhoto}
-        favoritedPhotos={favoritedPhotos}
-        setFavoritedPhotos={setFavoritedPhotos}
+        topics={state.topics}
+        photos={state.photos}
+        onPhotoSelect={onPhotoSelect}
+        updateToFavPhotoIds={updateToFavPhotoIds}
+        favoritedPhotos={state.favoritedPhotos}
       />
-      {modalVisibility && (
+      {state.modalVisibility && (
         <PhotoDetailsModal
-          photos={photos}
-          setModalVisibility={setModalVisibility}
-          activePhoto={activePhoto}
-          setActivePhoto={setActivePhoto}          
-          favoritedPhotos={favoritedPhotos}
-          setFavoritedPhotos={setFavoritedPhotos}
+          photos={state.photos}
+          activePhoto={state.activePhoto}
+          onPhotoSelect={onPhotoSelect}
+          onClosePhotoDetailsModal={onClosePhotoDetailsModal}
+          favoritedPhotos={state.favoritedPhotos}
+          updateToFavPhotoIds={updateToFavPhotoIds}
         />
       )}
     </div>
