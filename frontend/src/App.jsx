@@ -10,20 +10,26 @@ import PhotoDetailsModal from "routes/PhotoDetailsModal";
 const App = () => {
   const [modalVisibility, setModalVisibility] = useState(false);
   const [activePhoto, setActivePhoto] = useState(null);
+  const [favoritedPhotos, setFavoritedPhotos] = useState([]);
 
   return (
     <div className="App">
       <HomeRoute
         topics={topics}
         photos={photos}
-        modalVisibility={modalVisibility}
         setModalVisibility={setModalVisibility}
         setActivePhoto={setActivePhoto}
+        favoritedPhotos={favoritedPhotos}
+        setFavoritedPhotos={setFavoritedPhotos}
       />
       {modalVisibility && (
         <PhotoDetailsModal
+          photos={photos}
           setModalVisibility={setModalVisibility}
           activePhoto={activePhoto}
+          setActivePhoto={setActivePhoto}          
+          favoritedPhotos={favoritedPhotos}
+          setFavoritedPhotos={setFavoritedPhotos}
         />
       )}
     </div>
