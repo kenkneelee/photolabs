@@ -1,6 +1,4 @@
-import { useReducer } from "react";
-import topics from "mocks/topics";
-import photos from "mocks/photos";
+import { useReducer, useEffect } from "react";
 
 /* insert app levels actions below */
 const ACTIONS = {
@@ -29,12 +27,12 @@ function reducer(state, action) {
     case ACTIONS.SET_PHOTO_DATA:
       return {
         ...state,
-        photos: action.payload.newPhotos,
+        photoData: action.payload.data,
       };
     case ACTIONS.SET_TOPIC_DATA:
       return {
         ...state,
-        topics: action.payload.newTopics,
+        topicData: action.payload.data,
       };
     case ACTIONS.SELECT_PHOTO:
       return {
@@ -58,14 +56,27 @@ function reducer(state, action) {
 const useApplicationData = () => {
   // The state object will contain the entire state of the application.
   const initialState = {
-    topics: topics,
-    photos: photos,
+    topicData: [],
+    photoData: [],
     modalVisibility: false,
     activePhoto: null,
     favoritedPhotos: [],
   };
 
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  useEffect(() => {
+    fetch("/api/photos")
+      .then((res) => res.json())
+      .then((data) => {
+        dispatch({type: ACTIONS.SET_PHOTO_DATA, payload: {data}});
+      });
+      fetch("/api/topics")
+      .then((res) => res.json())
+      .then((data) => {
+        dispatch({type: ACTIONS.SET_TOPIC_DATA, payload: {data}});
+      });
+  }, []);
 
   // The onPhotoSelect action can be used when the user selects a photo.
   const onPhotoSelect = (photo) => {
@@ -91,7 +102,6 @@ const useApplicationData = () => {
       type: ACTIONS.SET_TOPIC_DATA,
       payload: { newTopics },
     });
-
   };
 
   // The onClosePhotoDetailsModal action can be used to close the modal.

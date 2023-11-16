@@ -18,15 +18,15 @@ const App = () => {
   return (
     <div className="App">
       <HomeRoute
-        topics={state.topics}
-        photos={state.photos}
+        topics={state.topicData}
+        photos={state.photoData}
         onPhotoSelect={onPhotoSelect}
         updateToFavPhotoIds={updateToFavPhotoIds}
         favoritedPhotos={state.favoritedPhotos}
       />
       {state.modalVisibility && (
         <PhotoDetailsModal
-          photos={state.photos}
+          photos={state.photoData}
           activePhoto={state.activePhoto}
           onPhotoSelect={onPhotoSelect}
           onClosePhotoDetailsModal={onClosePhotoDetailsModal}
