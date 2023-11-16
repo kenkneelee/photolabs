@@ -69,12 +69,12 @@ const useApplicationData = () => {
     fetch("/api/photos")
       .then((res) => res.json())
       .then((data) => {
-        dispatch({type: ACTIONS.SET_PHOTO_DATA, payload: {data}});
+        dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: { data } });
       });
-      fetch("/api/topics")
+    fetch("/api/topics")
       .then((res) => res.json())
       .then((data) => {
-        dispatch({type: ACTIONS.SET_TOPIC_DATA, payload: {data}});
+        dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: { data } });
       });
   }, []);
 
@@ -97,11 +97,19 @@ const useApplicationData = () => {
   };
 
   // The onLoadTopic does something..
-  const onLoadTopic = (newTopics) => {
-    dispatch({
-      type: ACTIONS.SET_TOPIC_DATA,
-      payload: { newTopics },
-    });
+  // http://localhost:8001/api/topics/photos/:topic_id
+  const onLoadTopic = (newTopic) => {
+    fetch(`/api/topics/photos/${newTopic.id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        dispatch({
+          type: ACTIONS.SET_PHOTO_DATA,
+          payload: { data },
+        });
+      })
+      .catch((err) => {
+        console.log("Error fetching topic data");
+      });
   };
 
   // The onClosePhotoDetailsModal action can be used to close the modal.
