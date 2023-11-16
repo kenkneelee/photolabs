@@ -23,6 +23,7 @@ const App = () => {
         onPhotoSelect={onPhotoSelect}
         updateToFavPhotoIds={updateToFavPhotoIds}
         favoritedPhotos={state.favoritedPhotos}
+        onLoadTopic = {onLoadTopic}
       />
       {state.modalVisibility && (
         <PhotoDetailsModal

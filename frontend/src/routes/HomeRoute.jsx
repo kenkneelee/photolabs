@@ -11,6 +11,7 @@ const HomeRoute = (props) => {
     onPhotoSelect,
     updateToFavPhotoIds,
     favoritedPhotos,
+    onLoadTopic
   } = props;
 
   // log updated favorites list on state change
@@ -23,6 +24,7 @@ const HomeRoute = (props) => {
       <TopNavigation
         topics={topics}
         isFavPhotoExist={favoritedPhotos.length > 0}
+        onLoadTopic={onLoadTopic}
       />
       <PhotoList
         photos={photos}
