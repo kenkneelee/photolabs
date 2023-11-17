@@ -79,7 +79,10 @@ const useApplicationData = () => {
       });
   }, []);
 
-  // The onPhotoSelect action can be used when the user selects a photo.
+  /**
+   * The onPhotoSelect action can be used when the user selects a photo.
+   * @param {object} photo
+   */
   const onPhotoSelect = (photo) => {
     dispatch({
       type: ACTIONS.SELECT_PHOTO,
@@ -87,7 +90,10 @@ const useApplicationData = () => {
     });
   };
 
-  // The updateToFavPhotoIds action can be used to set the favourite photos.
+  /**
+   * The updateToFavPhotoIds action can be used to set the favourite photos.
+   * @param {number} photoId
+   */
   const updateToFavPhotoIds = (photoId) => {
     dispatch({
       type: state.favoritedPhotos.includes(photoId)
@@ -97,7 +103,10 @@ const useApplicationData = () => {
     });
   };
 
-  // http://localhost:8001/api/topics/photos/:topic_id
+  /**
+   * The onLoadTopic action can be used when the user selects a specific category of photos.
+   * @param {object} newTopic
+   */
   const onLoadTopic = (newTopic) => {
     fetch(`/api/topics/photos/${newTopic.id}`)
       .then((res) => res.json())
@@ -112,7 +121,9 @@ const useApplicationData = () => {
       });
   };
 
-  // The onClosePhotoDetailsModal action can be used to close the modal.
+  /**
+   *  The onClosePhotoDetailsModal action can be used to close the modal.
+   */
   const onClosePhotoDetailsModal = () => {
     dispatch({
       type: ACTIONS.CLOSE_PHOTO_DETAILS,

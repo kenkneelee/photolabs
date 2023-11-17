@@ -16,17 +16,16 @@ const PhotoDetailsModal = (props) => {
     onClosePhotoDetailsModal,
     updateToFavPhotoIds,
   } = props;
-  
+
   const handleCloseModal = () => {
     onClosePhotoDetailsModal();
   };
 
+  // -- Note: This is my solution to make similar photos properly update. Assigning activePhoto.similar_photos directly only works for one "level" of similar photos. --
   // Convert the similar_photos object to an array of similar photos
   const similarPhotosArray = Object.values(activePhoto.similar_photos);
-
   // Extract the IDs of similar photos
   const similarPhotoIds = similarPhotosArray.map((photo) => photo.id);
-
   // Filter the photos array to include only the similar photos
   const similarPhotos = photos.filter((photo) =>
     similarPhotoIds.includes(photo.id)
