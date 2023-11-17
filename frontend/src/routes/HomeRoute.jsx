@@ -11,13 +11,8 @@ const HomeRoute = (props) => {
     onPhotoSelect,
     updateToFavPhotoIds,
     favoritedPhotos,
-    onLoadTopic
+    onLoadTopic,
   } = props;
-
-  // log updated favorites list on state change
-  useEffect(() => {
-    console.log("Favorites: ", favoritedPhotos);
-  }, [favoritedPhotos]);
 
   return (
     <div className="home-route">

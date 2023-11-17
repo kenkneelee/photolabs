@@ -7,7 +7,6 @@ const PhotoList = (props) => {
   const photos = props.photos.map((photo) => {
     return (
       <PhotoListItem
-        photos={props.photos}
         data={photo}
         key={photo.id}
         favoritedPhotos={props.favoritedPhotos}

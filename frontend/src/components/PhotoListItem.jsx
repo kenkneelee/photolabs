@@ -4,14 +4,7 @@ import "../styles/PhotoListItem.scss";
 import PhotoFavButton from "./PhotoFavButton";
 
 const PhotoListItem = (props) => {
-  /* Insert React */
-  const {
-    photos,
-    data,
-    favoritedPhotos,
-    updateToFavPhotoIds,
-    onPhotoSelect,
-  } = props;
+  const { data, favoritedPhotos, updateToFavPhotoIds, onPhotoSelect } = props;
 
   const openModal = () => {
     onPhotoSelect(data);

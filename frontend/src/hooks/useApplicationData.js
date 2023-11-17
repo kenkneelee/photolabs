@@ -1,6 +1,6 @@
 import { useReducer, useEffect } from "react";
 
-/* insert app levels actions below */
+/* App level actions */
 const ACTIONS = {
   FAV_PHOTO_ADDED: "FAV_PHOTO_ADDED",
   FAV_PHOTO_REMOVED: "FAV_PHOTO_REMOVED",
@@ -65,6 +65,7 @@ const useApplicationData = () => {
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  // Populate app with initial data upon first render
   useEffect(() => {
     fetch("/api/photos")
       .then((res) => res.json())
@@ -96,7 +97,6 @@ const useApplicationData = () => {
     });
   };
 
-  // The onLoadTopic does something..
   // http://localhost:8001/api/topics/photos/:topic_id
   const onLoadTopic = (newTopic) => {
     fetch(`/api/topics/photos/${newTopic.id}`)

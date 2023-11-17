@@ -10,13 +10,13 @@ function PhotoFavButton(props) {
     favoritedPhotos.some((favPhoto) => favPhoto === photo.id)
   );
 
+  // Update local state & icon when favorites list changes
   useEffect(() => {
-    // Update 'favorited' state when 'favoritedPhotos' change
     setFavorited(favoritedPhotos.some((favPhoto) => favPhoto === photo.id));
   }, [favoritedPhotos, photo]);
 
   const handleClick = () => {
-    updateToFavPhotoIds(photo.id)
+    updateToFavPhotoIds(photo.id);
   };
 
   return (
