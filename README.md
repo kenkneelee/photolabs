@@ -1,6 +1,6 @@
 # react-photolabs
 
-PhotoLabs is a full-stack webapp created using PostGreSQL, ExpressJs, ReactJs, and NodeJs.
+PhotoLabs is a full-stack webapp created using PostGreSQL, ExpressJs, ReactJs, and NodeJs. It is project #7 as part of my learnings at [Lighthouse Labs' Web Development Bootcamp.](https://www.lighthouselabs.ca/en/web-development)
 
 Given existing server architecture and style code, I was tasked with creating, populating, updating and styling components using recently learned methods including:
 
