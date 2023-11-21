@@ -7,7 +7,9 @@ const ACTIONS = {
   SET_PHOTO_DATA: "SET_PHOTO_DATA",
   SET_TOPIC_DATA: "SET_TOPIC_DATA",
   SELECT_PHOTO: "SELECT_PHOTO",
-  CLOSE_PHOTO_DETAILS: "DISPLAY_PHOTO_DETAILS",
+  CLOSE_PHOTO_DETAILS: "CLOSE_PHOTO_DETAILS",
+
+  VIEW_FAVORITES: "VIEW_FAVORITES",
 };
 
 function reducer(state, action) {
@@ -46,6 +48,13 @@ function reducer(state, action) {
         activePhoto: null,
         modalVisibility: action.payload.showDetails,
       };
+    
+    case ACTIONS.VIEW_FAVORITES:
+      return {
+        ...state,
+        favoritesModalVisibility: action.payload.viewFavorites,
+      };
+
     default:
       throw new Error(
         `Tried to reduce with unsupported action type: ${action.type}`
@@ -61,6 +70,7 @@ const useApplicationData = () => {
     modalVisibility: false,
     activePhoto: null,
     favoritedPhotos: [],
+    favoritesModalVisibility: false,
   };
 
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -131,12 +141,20 @@ const useApplicationData = () => {
     });
   };
 
+  const onToggleFavoritesModal = () => {
+    dispatch({
+      type: ACTIONS.VIEW_FAVORITES,
+      payload: { viewFavorites: !state.favoritesModalVisibility }
+    })
+  }
+
   return {
     state,
     onPhotoSelect,
     updateToFavPhotoIds,
     onLoadTopic,
     onClosePhotoDetailsModal,
+    onToggleFavoritesModal
   };
 };
 
