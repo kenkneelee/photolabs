@@ -12,6 +12,7 @@ const HomeRoute = (props) => {
     updateToFavPhotoIds,
     favoritedPhotos,
     onLoadTopic,
+    onToggleFavoritesModal,
   } = props;
 
   return (
@@ -20,6 +21,7 @@ const HomeRoute = (props) => {
         topics={topics}
         isFavPhotoExist={favoritedPhotos.length > 0}
         onLoadTopic={onLoadTopic}
+        onToggleFavoritesModal = {onToggleFavoritesModal}
       />
       <PhotoList
         photos={photos}
