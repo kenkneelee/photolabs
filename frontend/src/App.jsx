@@ -4,6 +4,7 @@ import "./App.scss";
 import HomeRoute from "routes/HomeRoute";
 import PhotoDetailsModal from "routes/PhotoDetailsModal";
 import useApplicationData from "hooks/useApplicationData";
+import FavoritesModal from "routes/FavoritesModal";
 
 const App = () => {
   const {
@@ -12,6 +13,7 @@ const App = () => {
     updateToFavPhotoIds,
     onLoadTopic,
     onClosePhotoDetailsModal,
+    onToggleFavoritesModal,
   } = useApplicationData();
 
   return (
@@ -23,6 +25,7 @@ const App = () => {
         updateToFavPhotoIds={updateToFavPhotoIds}
         favoritedPhotos={state.favoritedPhotos}
         onLoadTopic={onLoadTopic}
+        onToggleFavoritesModal={onToggleFavoritesModal}
       />
       {state.modalVisibility && (
         <PhotoDetailsModal
@@ -31,6 +34,15 @@ const App = () => {
           onPhotoSelect={onPhotoSelect}
           onClosePhotoDetailsModal={onClosePhotoDetailsModal}
           favoritedPhotos={state.favoritedPhotos}
+          updateToFavPhotoIds={updateToFavPhotoIds}
+        />
+      )}
+      {state.favoritesModalVisibility && (
+        <FavoritesModal
+          photos={state.photoData}
+          favoritedPhotos={state.favoritedPhotos}
+          onPhotoSelect={onPhotoSelect}
+          onToggleFavoritesModal={onToggleFavoritesModal}
           updateToFavPhotoIds={updateToFavPhotoIds}
         />
       )}
